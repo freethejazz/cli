@@ -22,6 +22,10 @@ const api = {
         } else {
           try {
             config = require(api.getConfigFile());
+            // Checks for ES6 modules
+            if(config.__esModule) {
+              config = config.default;
+            }
           } catch (e) {
             api.error = e;
           }
